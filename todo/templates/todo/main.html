@@ -1,0 +1,28 @@
+{% extends 'todo/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<form method="POST" action="" class="form">
+	{% csrf_token %}
+	<div class="mb-3">
+		{{ form }}
+		<input class="btn btn-success" type="submit" value="Add">
+	</div>
+</form>
+
+{% for task in tasks %}
+	<div class="card">
+		<div class="card-body">
+			<div>{{ task }}</div>
+			<div>
+				<img class="instruments edit" data-action="edit" data-task="{{ task.id }}" src="{% static 'images/edit.svg' %}">
+				<img class="instruments remove" data-action="delete" data-task="{{ task.id }}" src="{% static 'images/delete.svg' %}">
+			</div>
+		</div>
+	</div>
+{% empty %}
+	<p>There is no task</p>
+{% endfor %}
+
+{% endblock content %}
