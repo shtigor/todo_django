@@ -21,19 +21,46 @@
     margin: auto;
 }
 
+.block {
+    display: flex;
+    max-width: 60em;
+    margin: auto;
+}
+
 .card {
     margin: 0 auto 1em;
-    max-width: 55em;
+    /* max-width: 55em; */
+    min-height: 5em;
+    flex-grow: 1;
 }
 
-.list-group-item {
-    min-height: 4em;
+.card-body {
+    display: flex;
 }
 
-.list-group-item:hover {
+.card:hover {
     background-color: rgba(243, 243, 243, 0.719);
 }
 
-.instruments {
-    width: 1.3em;
+.block .tools {
+    display: flex;
+    flex-direction: column;
+    visibility: hidden;
+}
+
+.block:hover .tools {
+    visibility: visible;
+}
+
+.tool {
+    width: 2.5em;
+    padding: 0.5em;
+}
+
+.edit:hover {
+    background-color: rgb(71, 177, 68);
+}
+
+.remove:hover {
+    background-color: rgb(172, 58, 38);
 }

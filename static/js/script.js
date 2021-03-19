@@ -17,23 +17,29 @@ function getCookie(name) {
 const csrftoken = getCookie('csrftoken');
 
 
-let intsruments = document.querySelectorAll('.instruments');
+let intsruments = document.querySelectorAll('.tools');
 for (let i = 0; i < intsruments.length; i++) {
-    intsruments[i].addEventListener('click', function() {
-        let typeInstrument = this.dataset.action;
-        let taskID = this.dataset.task;
+    intsruments[i].addEventListener('click', function(event) {
+        let typeInstrument = event.target.dataset.action;
+        let taskID = event.target.dataset.task;
+        let taskDescription = event.target.parentElement.parentElement.children[0].innerText
 
-        update(typeInstrument, taskID)
-        
-        console.log("Instrument: " + typeInstrument + ", id: " + taskID);
+        update(typeInstrument, taskID, taskDescription)
     });
 };
 
-function update(typeInstrument, taskID) {
-    let new_description = '';
+function update(typeInstrument, taskID, taskDescription) {
+    let new_description = "";
 
     if (typeInstrument === 'edit') {
-        new_description = prompt('You are in edit mode. Update your task.')
+        new_description = prompt(
+            'You are in edit mode. Update your task.',
+            taskDescription)
+    };
+
+    if (new_description == null) {
+        // if user decide to not chage task
+        return ;
     };
 
     fetch('/update/', {

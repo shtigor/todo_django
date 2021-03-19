@@ -12,13 +12,15 @@
 </form>
 
 {% for task in tasks %}
-	<div class="card">
-		<div class="card-body">
-			<div>{{ task }}</div>
-			<div>
-				<img class="instruments edit" data-action="edit" data-task="{{ task.id }}" src="{% static 'images/edit.svg' %}">
-				<img class="instruments remove" data-action="delete" data-task="{{ task.id }}" src="{% static 'images/delete.svg' %}">
+	<div class="block">
+		<div class="card">
+			<div class="card-body">
+				{{ task }}
 			</div>
+		</div>
+		<div class="tools">
+			<img class="tool edit" data-action="edit" data-task="{{ task.id }}" src="{% static 'images/edit.svg' %}">
+			<img class="tool remove" data-action="delete" data-task="{{ task.id }}" src="{% static 'images/delete.svg' %}">
 		</div>
 	</div>
 {% empty %}
